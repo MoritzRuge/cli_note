@@ -1,5 +1,10 @@
+import click
+
 def main():
-    print("Hello from cli-note!")
+    @click.command()
+    def hello():
+        click.echo("Hello from cli-note!")
+    hello()
 
 
 if __name__ == "__main__":
