@@ -1,1 +1,1 @@
-This is a programming project, with me main goal to create a cli-note taking program.
+This is a programming project, with the main goal to create a cli-note taking program.
