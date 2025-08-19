@@ -1,6 +1,7 @@
 import click
 from main import list_all_notes, create_new_note, open_note
 
+@click.version_option("0.1.0", prog_name="cli-note")
 @click.group()
 def cli():
     "Note taking CLI"
