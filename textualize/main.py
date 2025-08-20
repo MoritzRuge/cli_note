@@ -1,19 +1,31 @@
-from textual.app import App, ComposeResult, RenderResult
-from textual.widget import Widget
-from textual.widgets import Static
+from textual.app import App, ComposeResult
+from textual.widgets import Footer, DataTable
 
-class Hello(Static):
-    """Display a Greeting."""
-    BORDER_TITLE = "Hello Widget"
-    def on_mount(self) -> None:
-        self.border_subtitle = "Test"
-        self.update("Hello, [b]World[/b]!")
+HEADER = [
+    ("ToDo", "Notizen", "Git"),
+]
 
-class CustomApp(App):
-    CSS_PATH = "myapp.tcss"
+class TabsApp(App):
+    # bindings for the Footer Objkect
+    BINDINGS = [
+        ("a", "add", "Add tab"),
+        ("r", "remove", "Remove active Tab"),
+        ("c", "clear", "Clear tabs"),
+    ]
+
     def compose(self) -> ComposeResult:
-        yield Hello()
+        yield DataTable()
+        yield Footer()
+
+    def on_mount(self) -> None:
+        """Focus the tabs when the app starts."""
+        table = self.query_one(DataTable)
+        table.add_columns(*HEADER[0])
+        #table.add_row()
+
+
+        
 
 if __name__ == "__main__":
-    app = CustomApp()
+    app = TabsApp()
     app.run()
